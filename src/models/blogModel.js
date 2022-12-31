@@ -1,0 +1,50 @@
+const mongoose=require('mongoose')
+const objectId= mongoose.Types.ObjectId
+const blogSchema=new mongoose.Schema({
+title:{
+    type:String,
+    required:true,
+    trim:true
+},
+body:{
+    type:String,
+    required:true,
+    trim:true,
+},
+authorId:{
+    type:objectId,
+    ref:"author",
+    required:true,
+    trim:true
+},
+tags:{
+    type:[String],
+    trim:true
+},
+category:{
+    type:[String],
+    required:true,
+    trim:true
+},
+subCategory:{
+    type:[String],
+    trim:true
+},
+isDeleted:{
+    type:Boolean,
+    default:false,
+},
+deletedAt:{
+    type:String,
+    default:null,
+},
+isPublished:{
+    type:Boolean,
+    default:false
+},
+publishedAt:{
+    type:String
+}
+},{timestamps:true})
+
+module.exports=mongoose.model("blog",blogSchema)
